@@ -1,0 +1,109 @@
+<div class="center">
+  <h3>Address form</h3>
+
+  <!-- Country dropdown-->
+  <div>
+    <label>Country name: </label>
+    <mat-form-field
+      style="width:50%;"
+      appearance="fill"
+      class="select-input-field"
+    >
+      <mat-select
+        (selectionChange)="countryChanged($event.value)"
+        [(value)]="countrySelected"
+        placeholder="Select country"
+      >
+        <mat-option [value]="">None</mat-option>
+        <mat-option *ngFor="let country of countries" [value]="country.id">{{
+          country.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- State dropdown-->
+
+  <div>
+    <label>State name: </label>
+    <mat-form-field
+      style="width:50%;"
+      appearance="fill"
+      class="select-input-field"
+    >
+      <mat-select
+        (selectionChange)="stateChanged($event.value)"
+        [disabled]="!dynamicStateList.length"
+        [class.disabledDropdown]="!dynamicStateList.length"
+        [(value)]="stateSelected"
+        [placeholder]="
+          dynamicStateList.length
+            ? 'Select state'
+            : 'Please select country first'
+        "
+      >
+        <mat-option [value]="">None</mat-option>
+        <mat-option *ngFor="let state of dynamicStateList" [value]="state.id">{{
+          state.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- District dropdown-->
+
+  <div>
+    <label>District name: </label>
+    <mat-form-field
+      style="width:50%;"
+      appearance="fill"
+      class="select-input-field"
+    >
+      <mat-select
+        (selectionChange)="districtChanged($event.value)"
+        [(value)]="districtSelected"
+        [disabled]="!dynamicDistrictList.length"
+        [class.disabledDropdown]="!dynamicDistrictList.length"
+        [placeholder]="
+          dynamicDistrictList.length
+            ? 'Select district'
+            : 'Please select state first'
+        "
+      >
+        <mat-option [value]="">None</mat-option>
+        <mat-option
+          *ngFor="let district of dynamicDistrictList"
+          [value]="district.id"
+          >{{ district.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Place dropdown-->
+
+  <div>
+    <label>Place name: </label>
+    <mat-form-field
+      style="width:50%;"
+      appearance="fill"
+      class="select-input-field"
+    >
+      <mat-select
+        [(value)]="placeSelected"
+        [disabled]="!dynamicPlaceList.length"
+        [class.disabledDropdown]="!dynamicPlaceList.length"
+        [placeholder]="
+          dynamicPlaceList.length
+            ? 'Select place'
+            : 'Please select district first'
+        "
+      >
+        <mat-option [value]="">None</mat-option>
+        <mat-option *ngFor="let place of dynamicPlaceList" [value]="place.id">{{
+          place.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
